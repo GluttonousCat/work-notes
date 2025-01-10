@@ -1,6 +1,6 @@
-## 轻量Pairwise模型
+# 轻量Pairwise模型
 
-### TS Train Strategy
+## TS Train Strategy
 
 Teacher Model: bge_reranker-m3-v2, hidden_size: 1024,  inherit XLM-Roberta
 
@@ -10,7 +10,7 @@ Loss Function: Ranknet loss + kl + L2
 
 Dataset: duread2022
 
-### RerankModel
+## RerankModel
 
 ```python
 import torch.nn as nn
@@ -41,12 +41,12 @@ class RerankModel(nn.Module)
         )  
         student_intermediate = student_output.hidden_states[-2] 
 
-        return teacher_features, student_result, teacher_intermediate, student_intermediate        
+        return teacher_features, student_result, teacher_intermediate_features, student_intermediate        
 ```
 
-### Loss Function
+## Loss Function
 
-#### RanknetLoss
+### RanknetLoss
 
 ```python 
 import torch
@@ -71,7 +71,7 @@ class RankNetLoss(nn.Module):
         return loss.mean()
 ```
 
-#### KL
+### KL
 
 ```python
 import torch.nn.functional as F
@@ -93,7 +93,7 @@ class KLLoss(nn.Module):
         return loss
 ```
 
-#### L2
+### L2
 
 ```python
 class MSELoss(nn.Module)
@@ -109,7 +109,7 @@ class MSELoss(nn.Module)
 
 ```
 
-### Dataset
+## Dataset
 
 ```python
 import json
@@ -121,9 +121,7 @@ class RerankDataset(Dataset):
         
 ```
 
-
-
-### Train
+## Train
 
 ```python
 import torch

@@ -20,7 +20,8 @@ The quantization tutorial refers to the LLM engineering dev documentation, and M
 
 ## Chunking Strategies
 
-> :pushpin: ​Some chunking ideas for reference https://www.analyticsvidhya.com/blog/2024/10/chunking-techniques-to-build-exceptional-rag-systems/
+> :pushpin: ​Some chunking ideas for reference:
+> https://www.analyticsvidhya.com/blog/2024/10/chunking-techniques-to-build-exceptional-rag-systems/
 
 :point_right: Use Spacy to assistant dev (Spacy tutorial refers to the Spacy engineering dev documentation)
 

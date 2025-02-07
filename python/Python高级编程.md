@@ -1,8 +1,8 @@
 # Python高级编程
 
-## 类
+## class
 
-**示例类Paper**：
+**class Paper**：
 
 ```python
 class Paper:
@@ -15,51 +15,51 @@ class Paper:
 paper = Paper("Attention is all you need", "***")
 ```
 
-### 类的基本内置属性
+### basic built-in attributes
 
-①`__class__`: 返回当前实例所属的类。
+①`__class__`: For an instance of a class, the `__class__` attribute points to the class that the instance is an object of.
 
-**示例**：
+**example**：
 
 ```python
 paper.__class__
 ```
 
-**输出**：
+**output**：
 
 ```plaintext
 <class '__main__.Paper'>
 ```
 
-②`__dict__`: 对象的属性字典，包含了类实例的所有属性及其值。可用于动态访问和修改属性。
+②`__dict__`: In Python, the `__dict__` attribute is a special attribute that holds the dictionary of an object's (or class's) attributes and methods.
 
-**示例**：
+**example**：
 
 ```python
 p.__dict__
 ```
 
-**输出**：
+**output**：
 
 ```python
 {'title': "Attention is all you need", "author": "***"}
 ```
 
-**动态修改**：
+**dynamic modification**：
 
 ```python
 paper.__dict__["author"] = "**"
 ```
 
-③`__name__`: 类的名称。**仅对类生效，不对实例生效**
+③`__name__`: The name of the class. **Only valid for classes, not instances.**
 
-**示例**：
+**example**：
 
 ```python
 Paper.__name__
 ```
 
-输出
+**output**
 
 ```python
 Paper
@@ -67,13 +67,13 @@ Paper
 
 ④`__module__`: 定义类的模块名。
 
-**示例**：
+**example**：
 
 ```python
 Paper.__module__  # 当作为主程序运行时，eg. python paper.py 显示main， 否则为模块名
 ```
 
-**输出**：
+**output**：
 
 ```python
 __main__
@@ -93,7 +93,7 @@ Paper.__doc__
 
 
 
-**输出**:
+**output**:
 
 ```python
 Paper Object
@@ -101,9 +101,7 @@ Paper Object
 
 
 
-
-
-### 类的实例方法
+### Instance method of class
 
 `__init__`:
 
@@ -111,7 +109,7 @@ Paper Object
 
 `__call__`: 使类能像函数一样被调用
 
-**示例**：
+**example**：
 
 ```python
 class Paper():
@@ -122,7 +120,7 @@ class Paper():
 paper()
 ```
 
-**输出**:
+**output**:
 
 ```python
 "Title: Attention is all you need"
@@ -139,7 +137,7 @@ paper()
 
 `__item__`: 
 
-### 属性访问控制
+### Attribute operation method
 
 `__getattr__(self, name)`：在访问不存在的属性时自动调用。
 
@@ -149,9 +147,7 @@ paper()
 
 `__getattribute__(self, name)`：访问任意属性时自动调用（包括存在的属性），比 __getattr__ 更早调用。
 
-
-
-## 迭代器
+## Iterator
 
 迭代器是一个可以逐个返回元素的对象，它是实现迭代协议的对象。一般列表、字典、字符等等都是可迭代对象
 
@@ -159,13 +155,9 @@ paper()
 
 `__next__()`: 返回下一个元素，直到没有元素可以返回时引发 `StopIteration` 异常。
 
+## Genarator
 
-
-
-
-## 生成器
-
-## 装饰器
+## Decorator
 
 Python装饰器是一种设计模式，允许将一个函数包装在另一个函数中来修改其功能，而不改变该函数的结构与功能。
 

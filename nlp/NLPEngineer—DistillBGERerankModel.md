@@ -1,4 +1,4 @@
-# 轻量Pairwise模型
+# DistilledPairwiseModel:zzz:
 
 ## TS Train Strategy
 

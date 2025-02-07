@@ -12,7 +12,7 @@
 npu-smi info
 ```
 
-:white_check_mark: check the cpu version
+:white_check_mark: ​check the cpu version
 
 ```bash
 sudo lscpu

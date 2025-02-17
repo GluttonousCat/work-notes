@@ -56,7 +56,7 @@ paper.__dict__["author"] = "**"
 **example**：
 
 ```python
-Paper.__name__
+Paper.__name_
 ```
 
 **output**
@@ -155,7 +155,7 @@ paper()
 
 `__next__()`: 返回下一个元素，直到没有元素可以返回时引发 `StopIteration` 异常。
 
-## Genarator
+## Generator
 
 ## Decorator
 

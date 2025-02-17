@@ -1,6 +1,6 @@
-# Transformer:hugs:
+# HandWritingTransformer​s:hugs:
 
-## Embedding
+## Embeddings
 
 ### Position Embedding
 
@@ -38,14 +38,16 @@ class PositionEmbedding(nn.module):
     Attribute:
         
     """
-    def __init__(self, dimension: int = 768, max_len: str = 768):
+    def __init__(self, dimension: int = 768, max_len: str = 512):
         super().__init__()
         self.ecoding = torch.zeros(max_len, dimension)
         position = torch.arange(0, max_len).float().unsqueeze(1)  # shape: (max_len, 1)
-        div_term = torch.exp(torch.arange(0, dimension, 2).float())
+        div_term = torch.exp(torch.arange(0, dimension, 2).float() * (-math.log(10000.0)) / dimension)
+        pe[:, 0::2] = torch.sin(position / div_term)
+        pe[:, 1::2] = torch.cos(position / div_term)
     
-    def forward(self):
-        pass
+    def forward(self, x):
+        return X + self.pe[:, :x.size(1), :]
 ```
 
 ### Word Embedding
@@ -93,11 +95,18 @@ where:
 
 ```python
 class MultiHeadAttention(nn.module):
-    def __init__(self):
+    def __init__(self, dimension: int = 768):
         super().__init__()
+        self.q_proj = nn.linear()
+        self.k_proj = nn.linear()
+        self.v_proj = nn.linear()
+        self.o_proj = nn.linear()
+        self. = X * self.q_proj 
+        
         pass
     
-    def forward(self):
+    def forward(self, x):
+        return X * self
         pass
 ```
 

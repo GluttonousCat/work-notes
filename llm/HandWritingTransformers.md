@@ -1,6 +1,6 @@
-# Transformer:hugs:
+# HandWritingTransformer​s:hugs:
 
-## Embedding
+## Embeddings
 
 ### Position Embedding
 
@@ -38,14 +38,16 @@ class PositionEmbedding(nn.module):
     Attribute:
         
     """
-    def __init__(self, dimension: int = 768, max_len: str = 768):
+    def __init__(self, dimension: int = 768, max_len: str = 512):
         super().__init__()
         self.ecoding = torch.zeros(max_len, dimension)
         position = torch.arange(0, max_len).float().unsqueeze(1)  # shape: (max_len, 1)
-        div_term = torch.exp(torch.arange(0, dimension, 2).float())
+        div_term = torch.exp(torch.arange(0, dimension, 2).float() * (-math.log(10000.0)) / dimension)
+        pe[:, 0::2] = torch.sin(position / div_term)
+        pe[:, 1::2] = torch.cos(position / div_term)
     
-    def forward(self):
-        pass
+    def forward(self, x):
+        return X + self.pe[:, :x.size(1), :]
 ```
 
 ### Word Embedding
@@ -93,15 +95,32 @@ where:
 
 ```python
 class MultiHeadAttention(nn.module):
-    def __init__(self):
+    def __init__(self, d_model: int = 768, n_head: int = ):
         super().__init__()
-        pass
+        self.d_model = d_model
+        self.n_head = n_head
+        self.head_dim = dimension = n_head
+        
+        self.q_proj = nn.linear(d_model, d_model)
+        self.k_proj = nn.linear(d_model, d_model)
+        self.v_proj = nn.linear(d_model, d_model)
+        self.o_proj = nn.linear(d_model, d_model)
+        
+        self.attn = nn.MultiheadAttention(d_model, n_head)
     
-    def forward(self):
-        pass
+    def forward(self, q, k, v):
+        query = self.q_proj(q)
+        key = self.q_proj(k)
+        value = self.q_proj(v)
+        
+        output, _ = self.attn(q, k, v, attn_mask=mask)
+        
+        output = self.out_linear(output)
 ```
 
 ## Feed Forward Network
+
+:pencil: Example code​
 
 ```python
 class FeedForward(nn.module):
@@ -116,6 +135,8 @@ class FeedForward(nn.module):
 
 ## Encoder-Decoder Layer
 
+:pencil: Example code
+
 ```python
 class EncoderLayer(nn.module):
     def __init__(self):
@@ -128,6 +149,8 @@ class EncoderLayer(nn.module):
 ```
 
 ## Transformer
+
+:pencil: Example code
 
 ```python
 class Transformers(nn.module):

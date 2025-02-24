@@ -159,5 +159,42 @@ paper()
 
 ## Decorator
 
-Python装饰器是一种设计模式，允许将一个函数包装在另一个函数中来修改其功能，而不改变该函数的结构与功能。
+A **decorator** in Python is a design pattern that allows you to modify the behavior of a function or a method. It's essentially a function that takes another function as an argument and extends or alters its behavior without explicitly modifying the original function. Firstly, the first focus should be on `wraps` and `Callable`
+
+:pushpin: wraps​
+
+```python
+from typing import Callable
+from functools import wraps
+
+
+class MilvusTransaction:
+    """
+    MilvusTransaction:
+        This class is used for the Milvus rollback function to handle exceptions and prevent data corruption.
+
+    Method:
+
+    Attribute:
+        rollback_on_failure: if rollback on failure, default True 
+
+    Example:
+        @MilvusTransaction(rollback_on_failure=True)
+
+    """
+    def __init__(self, rollback_on_failure):
+        self.rollback_on_failure = rollback_on_failure
+    
+    def __call__(self, f: Callable):
+        @wraps(f)
+        async def wrapper(*args, **kwargs):
+            try:
+                result = await f(*args, **kwargs)
+                pass
+            exception RollbackException as e:
+                pass
+        return wrapper
+```
+
+
 

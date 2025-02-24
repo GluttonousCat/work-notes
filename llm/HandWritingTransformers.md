@@ -95,22 +95,32 @@ where:
 
 ```python
 class MultiHeadAttention(nn.module):
-    def __init__(self, dimension: int = 768):
+    def __init__(self, d_model: int = 768, n_head: int = ):
         super().__init__()
-        self.q_proj = nn.linear()
-        self.k_proj = nn.linear()
-        self.v_proj = nn.linear()
-        self.o_proj = nn.linear()
-        self. = X * self.q_proj 
+        self.d_model = d_model
+        self.n_head = n_head
+        self.head_dim = dimension = n_head
         
-        pass
+        self.q_proj = nn.linear(d_model, d_model)
+        self.k_proj = nn.linear(d_model, d_model)
+        self.v_proj = nn.linear(d_model, d_model)
+        self.o_proj = nn.linear(d_model, d_model)
+        
+        self.attn = nn.MultiheadAttention(d_model, n_head)
     
-    def forward(self, x):
-        return X * self
-        pass
+    def forward(self, q, k, v):
+        query = self.q_proj(q)
+        key = self.q_proj(k)
+        value = self.q_proj(v)
+        
+        output, _ = self.attn(q, k, v, attn_mask=mask)
+        
+        output = self.out_linear(output)
 ```
 
 ## Feed Forward Network
+
+:pencil: Example code​
 
 ```python
 class FeedForward(nn.module):
@@ -125,6 +135,8 @@ class FeedForward(nn.module):
 
 ## Encoder-Decoder Layer
 
+:pencil: Example code
+
 ```python
 class EncoderLayer(nn.module):
     def __init__(self):
@@ -137,6 +149,8 @@ class EncoderLayer(nn.module):
 ```
 
 ## Transformer
+
+:pencil: Example code
 
 ```python
 class Transformers(nn.module):
